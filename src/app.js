@@ -1,6 +1,8 @@
+import routes from "./routes";
 const express = require("express");
 const cors = require("cors");
 const { Router } = require("express");
+
 
 class App {
   constructor() {
@@ -15,12 +17,6 @@ class App {
   }
 
   routes() {
-    const routes = Router();
-
-    routes.get("/hello", (req, res) => {
-      res.json({ hello: "Hello World!" });
-    });
-
     this.server.use(routes);
   }
 }
