@@ -1,4 +1,5 @@
 import routes from "./routes";
+import "./database"
 const express = require("express");
 const cors = require("cors");
 const { Router } = require("express");
