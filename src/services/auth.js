@@ -12,9 +12,9 @@ const createPasswordHash = (password) => {
   });
 };
 
-const checkPassword = (password, hashedPassword) => {
+const checkPassword = (user, password) => {
   return new Promise((resolve, reject) => {
-    bcrypt.compare(password, hashedPassword, (err, result) => {
+    bcrypt.compare(password, user.password, (err, result) => {
       if (err) {
         reject(err);
       } else {
