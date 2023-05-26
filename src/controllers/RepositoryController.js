@@ -11,7 +11,7 @@ class RepositoryController {
         return res.status(404).json();
       }
 
-      const repositories = await Repository.find({ user: user_id });
+      const repositories = await Repository.find({ userId: user_id });
 
       return res.json(repositories);
     } catch (error) {
@@ -23,7 +23,7 @@ class RepositoryController {
   async create(req, res) {
     try {
       const { user_id } = req.params;
-      const { name, url, techs } = req.body;
+      const { name, url } = req.body;
 
       const user = await User.findById(user_id);
 
@@ -46,7 +46,9 @@ class RepositoryController {
       return res.status(201).json(newRepository);
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ error: "Internal server error" });
+      return res
+        .status(500)
+        .json({ error: "Repository name or url already exists." });
     }
   }
 

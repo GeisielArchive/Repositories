@@ -1,5 +1,5 @@
 import User from "../models/User";
-// import { createPasswordHash } from "../services/auth";
+import { createPasswordHash } from "../services/auth";
 
 class UsersController {
   // Método para listar todos os usuários.
@@ -40,14 +40,14 @@ class UsersController {
         return res.status(422).json({ error: `User ${email} already exists` });
       }
 
-      // To-do - Adicionar Criptografia de senha.
-
-      const newUser = await User.create({
-        email,
-        password,
-      });
+      // Criptografar a senha utilizando a Promise
+      const encryptedPassword = await createPasswordHash(password);
+      
+      // Criar o novo usuário com a senha criptografada
+      const newUser = await User.create({ email, password: encryptedPassword });
 
       return res.status(201).json(newUser);
+
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error: "Internal server error" });
