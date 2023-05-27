@@ -8,7 +8,7 @@ const routes = new Router();
 
 routes.post("/sessions", SessionsController.create);
 
-routes.use(auth);
+// routes.use(auth);
 
 // Rest
 routes.get("/users", UsersController.index);
@@ -20,6 +20,6 @@ routes.delete("/users/:id", UsersController.destroy);
 // Repository
 routes.get("/users/repositories/:user_id", RepositoryController.index);
 routes.post("/users/repositories/:user_id", RepositoryController.create);
-routes.delete("/users/repositories/:user_id", RepositoryController.destroy);
+routes.delete("/users/repositories/:user_id/:id", RepositoryController.destroy);
 
 export default routes;

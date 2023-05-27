@@ -31,7 +31,7 @@ class RepositoryController {
         return res.status(404).json();
       }
 
-      const repository = await Repository.findOne({ userId: user_id, name });
+      const repository = await Repository.findOne({ userId: user_id, url });
 
       if (repository) {
         return res.status(422).json({ error: "Repository already exists" });
@@ -61,8 +61,7 @@ class RepositoryController {
         return res.status(404).json();
       }
 
-      const repository = await Repository.findOne({ userId: user_id, id });
-      i;
+      const repository = await Repository.findOne({ _id: id });
 
       if (!repository) {
         return res.status(404).json();
