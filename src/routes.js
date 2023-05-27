@@ -7,8 +7,7 @@ import SessionsController from "./controllers/SessionsController";
 const routes = new Router();
 
 routes.post("/sessions", SessionsController.create);
-
-// routes.use(auth);
+routes.use(auth);
 
 // Rest
 routes.get("/users", UsersController.index);
